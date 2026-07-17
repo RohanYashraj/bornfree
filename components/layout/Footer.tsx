@@ -126,10 +126,12 @@ export default function Footer() {
       {/* Ghost wordmark — closing brand moment. SVG textLength keeps the
           full word fitted to the footer width at every viewport. */}
       <div aria-hidden className="pointer-events-none select-none px-2">
-        <svg viewBox="0 0 1000 128" className="block w-full" role="presentation">
+        {/* Tall condensed glyphs: textLength pins the width while the larger
+            font-size stretches the letterforms vertically. */}
+        <svg viewBox="0 0 1000 158" className="block w-full" role="presentation">
           <text
             x="500"
-            y="122"
+            y="152"
             textAnchor="middle"
             textLength="992"
             lengthAdjust="spacingAndGlyphs"
@@ -137,7 +139,7 @@ export default function Footer() {
             style={{
               fontFamily: "var(--font-archivo), sans-serif",
               fontWeight: 700,
-              fontSize: "138px",
+              fontSize: "210px",
             }}
           >
             BORNFREE
