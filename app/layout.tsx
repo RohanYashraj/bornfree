@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Archivo, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/content/site";
+import { commerce } from "@/lib/commerce";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
+import Header, { type MenuImageTile } from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import CartDrawer, { type CrossSellItem } from "@/components/cart/CartDrawer";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -41,9 +46,35 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // Shared shell data: mega-menu image tile + cart cross-sell suggestions.
+  let menuImage: MenuImageTile | null = null;
+  let crossSell: CrossSellItem[] = [];
+  try {
+    const bestSellers = await commerce.getCollectionProducts("best-seller", 6);
+    const first = bestSellers.find((p) => p.images[0]);
+    if (first) {
+      menuImage = {
+        src: first.images[0].src,
+        alt: first.images[0].alt,
+        href: "/collections/best-seller",
+        label: "Best Sellers",
+      };
+    }
+    crossSell = bestSellers
+      .filter((p) => p.availableForSale)
+      .slice(0, 4)
+      .map((p) => ({
+        handle: p.handle,
+        title: p.title,
+        price: p.priceRange.min.amount,
+        image: p.images[0]?.src ?? null,
+      }));
+  } catch {
+    // Shell renders without the image tile / cross-sell if the fetch fails.
+  }
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -67,7 +98,11 @@ export default function RootLayout({
       <body
         className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} antialiased`}
       >
-        {children}
+        <AnnouncementBar />
+        <Header menuImage={menuImage} />
+        <main id="main">{children}</main>
+        <Footer />
+        <CartDrawer crossSell={crossSell} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}

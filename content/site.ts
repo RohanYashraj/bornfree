@@ -35,6 +35,7 @@ export const quickLinks = [
   { label: "Pyjamas", href: "/collections/pyjamas" },
 ];
 
+/** Category tiles — imagery resolved at render time from each collection's own products. */
 export const categoryTiles = [
   { label: "Cargo Pants", handle: "cargo-pants" },
   { label: "Cargo Shorts", handle: "cargo-shorts" },
