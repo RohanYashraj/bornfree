@@ -123,12 +123,26 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Ghost wordmark — closing brand moment */}
-      <div
-        aria-hidden
-        className="type-display pointer-events-none select-none overflow-hidden text-center text-[18vw] leading-[0.75] text-bone/[0.06]"
-      >
-        BORNFREE
+      {/* Ghost wordmark — closing brand moment. SVG textLength keeps the
+          full word fitted to the footer width at every viewport. */}
+      <div aria-hidden className="pointer-events-none select-none px-2">
+        <svg viewBox="0 0 1000 128" className="block w-full" role="presentation">
+          <text
+            x="500"
+            y="122"
+            textAnchor="middle"
+            textLength="992"
+            lengthAdjust="spacingAndGlyphs"
+            className="fill-bone/[0.06]"
+            style={{
+              fontFamily: "var(--font-archivo), sans-serif",
+              fontWeight: 700,
+              fontSize: "138px",
+            }}
+          >
+            BORNFREE
+          </text>
+        </svg>
       </div>
     </footer>
   );
