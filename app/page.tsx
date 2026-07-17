@@ -5,7 +5,6 @@ import Hero from "@/components/home/Hero";
 import QuickLinks from "@/components/layout/QuickLinks";
 import CategoryRail from "@/components/home/CategoryRail";
 import Standard from "@/components/home/Standard";
-import OccasionGrid from "@/components/home/OccasionGrid";
 import ShopByColour from "@/components/home/ShopByColour";
 import Testimonials from "@/components/home/Testimonials";
 import NewsletterForm from "@/components/home/NewsletterForm";
@@ -57,10 +56,6 @@ export default function Home() {
       </Suspense>
 
       <Standard />
-
-      <Suspense>
-        <OccasionGrid />
-      </Suspense>
 
       <Suspense>
         <ShopByColour />

@@ -175,30 +175,28 @@ export const siteConfig = {
 } as const;
 
 /**
- * Hero slides — clean editorial photography from the store's CDN, set in a
- * split art-direction layout (the banner artwork carries baked-in copy, so
- * we use the untreated photoshoot frames instead).
+ * Hero slides — full-bleed lifestyle photography (local, in /public/hero)
+ * with the type overlaid on the open right side of each frame.
  */
 export const heroSlides = [
   {
-    eyebrow: "JOGGERS · 100% COTTON",
+    eyebrow: "New · Cargo pants",
     headline: ["Built for the", "long day"],
-    cta: { label: "Shop joggers", href: "/collections/cargo-joggers-1" },
+    cta: { label: "Shop cargo pants", href: "/collections/cargo-pants" },
     ghost: { label: "New launch", href: "/collections/new-launch" },
-    image:
-      "https://bornfreefashions.com/cdn/shop/files/13-06-2026--caio_jardel03670.jpg",
-    imageAlt: "Bornfree khaki cargo joggers, side profile",
-    code: "01 / KHAKI",
+    image: "/hero/hero1.png",
+    imageAlt:
+      "Man in Bornfree blue cargo pants leaning on a fence post at sunset",
+    code: "01 / DUSK",
   },
   {
-    eyebrow: "DENIM CARGOS · CUT IN KOLKATA",
-    headline: ["Workwear,", "off duty"],
-    cta: { label: "Shop cargo pants", href: "/collections/cargo-pants" },
+    eyebrow: "Cargo shorts · Beach ready",
+    headline: ["Summer,", "sorted"],
+    cta: { label: "Shop cargo shorts", href: "/collections/cargo-shorts" },
     ghost: { label: "Best sellers", href: "/collections/best-seller" },
-    image:
-      "https://bornfreefashions.com/cdn/shop/files/13-06-2026--caio_jardel02430.jpg",
-    imageAlt: "Bornfree indigo denim pants, side profile",
-    code: "02 / INDIGO",
+    image: "/hero/hero2.png",
+    imageAlt: "Man in Bornfree khaki cargo shorts on a beach at sunrise",
+    code: "02 / SHORE",
   },
 ];
 
