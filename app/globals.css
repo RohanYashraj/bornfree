@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  /* Mill Spec palette — garment-tag paper + olive/khaki earth tones */
+  --bf-bone: #ece8df;
+  --bf-paper: #f7f5f0;
+  --bf-carbon: #1a1a16;
+  --bf-olive: #4e5238;
+  --bf-olive-deep: #3e4230;
+  --bf-khaki: #a99b7a;
+  --bf-signal: #c2451e;
+
+  --bf-border: color-mix(in srgb, var(--bf-khaki) 40%, transparent);
+
+  --ease-spec: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-bone: var(--bf-bone);
+  --color-paper: var(--bf-paper);
+  --color-carbon: var(--bf-carbon);
+  --color-olive: var(--bf-olive);
+  --color-olive-deep: var(--bf-olive-deep);
+  --color-khaki: var(--bf-khaki);
+  --color-signal: var(--bf-signal);
+  --color-border-spec: var(--bf-border);
+
+  --font-display: var(--font-archivo);
+  --font-sans: var(--font-instrument);
+  --font-mono: var(--font-plex-mono);
+
+  --radius-spec: 2px;
+
+  --ease-spec: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --breakpoint-3xl: 1440px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bf-bone);
+  color: var(--bf-carbon);
+  font-family: var(--font-instrument), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus ring in signal — visible keyboard affordance everywhere */
+:focus-visible {
+  outline: 2px solid var(--bf-signal);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--bf-olive);
+  color: var(--bf-paper);
+}
+
+/* Display headers: Archivo, uppercase, expanded tracking */
+.type-display {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 0.95;
+  font-stretch: 112%;
+}
+
+/* Mono spec labels / eyebrows */
+.type-spec {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Animated 1px underline for links */
+.link-spec {
+  position: relative;
+}
+.link-spec::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-spec);
+}
+.link-spec:hover::after,
+.link-spec:focus-visible::after,
+.group:hover .link-spec::after {
+  transform: scaleX(1);
+}
+
+/* Hide scrollbar on chip rails while keeping scroll */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

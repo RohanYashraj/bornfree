@@ -1,0 +1,14 @@
+import { publicProvider } from "../lib/commerce/public-provider";
+const cols = await publicProvider.getCollections();
+console.log("collections:", cols.length, cols.slice(0,5).map(c=>c.handle));
+const prods = await publicProvider.getCollectionProducts("best-seller", 250);
+console.log("best-seller products:", prods.length);
+const p = prods[0];
+console.log("first:", p.title, "| min", p.priceRange.min.amount, "| variants", p.variants.length, "| avail", p.availableForSale);
+console.log("specs:", JSON.stringify(p.specs));
+console.log("sold-out count:", prods.filter(x=>!x.availableForSale).length, "/", prods.length);
+console.log("sale count:", prods.filter(x=>x.variants.some(v=>v.compareAtPrice && v.compareAtPrice.amount > v.price.amount)).length);
+const single = await publicProvider.getProduct(p.handle);
+console.log("single .js min:", single?.priceRange.min.amount, "images:", single?.images.length, "options:", JSON.stringify(single?.options));
+const s = await publicProvider.searchProducts("cargo");
+console.log("search 'cargo':", s.length, s[0]?.title);
