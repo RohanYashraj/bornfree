@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-[1440px] px-4 py-12 md:px-8">
-      <p className="type-spec mb-3 text-khaki">Say hello</p>
+      <p className="type-spec mb-3 text-umber">Say hello</p>
       <h1 className="type-display mb-10 text-3xl md:text-5xl">Contact</h1>
 
       <div className="grid gap-12 lg:grid-cols-2">
@@ -23,7 +23,7 @@ export default function ContactPage() {
           </p>
           <dl className="mt-8 max-w-md border border-border-spec font-mono text-sm">
             <div className="grid grid-cols-[96px_1fr] gap-3 border-b border-border-spec px-4 py-3">
-              <dt className="text-[11px] uppercase tracking-[0.1em] text-khaki">Phone</dt>
+              <dt className="text-[11px] uppercase tracking-[0.1em] text-umber">Phone</dt>
               <dd>
                 <a href={`tel:${siteConfig.contact.phone.replace(/[^+\d]/g, "")}`} className="hover:text-olive">
                   {siteConfig.contact.phone}
@@ -31,7 +31,7 @@ export default function ContactPage() {
               </dd>
             </div>
             <div className="grid grid-cols-[96px_1fr] gap-3 border-b border-border-spec px-4 py-3">
-              <dt className="text-[11px] uppercase tracking-[0.1em] text-khaki">Email</dt>
+              <dt className="text-[11px] uppercase tracking-[0.1em] text-umber">Email</dt>
               <dd>
                 <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-olive">
                   {siteConfig.contact.email}
@@ -39,11 +39,11 @@ export default function ContactPage() {
               </dd>
             </div>
             <div className="grid grid-cols-[96px_1fr] gap-3 border-b border-border-spec px-4 py-3">
-              <dt className="text-[11px] uppercase tracking-[0.1em] text-khaki">Hours</dt>
+              <dt className="text-[11px] uppercase tracking-[0.1em] text-umber">Hours</dt>
               <dd>{siteConfig.contact.hours}</dd>
             </div>
             <div className="grid grid-cols-[96px_1fr] gap-3 px-4 py-3">
-              <dt className="text-[11px] uppercase tracking-[0.1em] text-khaki">Office</dt>
+              <dt className="text-[11px] uppercase tracking-[0.1em] text-umber">Office</dt>
               <dd className="font-sans text-sm">{siteConfig.address}</dd>
             </div>
           </dl>

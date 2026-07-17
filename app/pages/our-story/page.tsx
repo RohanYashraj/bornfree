@@ -52,7 +52,7 @@ export default async function OurStoryPage() {
       {/* Bands */}
       <section className="mx-auto grid max-w-[1440px] items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8">
         <Reveal>
-          <p className="type-spec mb-3 text-khaki">The craft</p>
+          <p className="type-spec mb-3 text-umber">The craft</p>
           <h2 className="type-display mb-5 text-2xl md:text-3xl">
             Bottomwear is all we do
           </h2>
@@ -81,7 +81,7 @@ export default async function OurStoryPage() {
           </Reveal>
         )}
         <Reveal delay={0.1} className="order-1 md:order-2">
-          <p className="type-spec mb-3 text-khaki">The wash</p>
+          <p className="type-spec mb-3 text-umber">The wash</p>
           <h2 className="type-display mb-5 text-2xl md:text-3xl">
             Softness is a process
           </h2>
@@ -96,7 +96,7 @@ export default async function OurStoryPage() {
       {/* Timeline */}
       <section className="border-y border-border-spec bg-paper py-16">
         <div className="mx-auto max-w-[1440px] px-4 md:px-8">
-          <p className="type-spec mb-8 text-khaki">25 years, briefly</p>
+          <p className="type-spec mb-8 text-umber">25 years, briefly</p>
           <div className="grid gap-8 md:grid-cols-3">
             {TIMELINE.map((t, i) => (
               <Reveal key={t.year} delay={i * 0.06}>
@@ -112,11 +112,11 @@ export default async function OurStoryPage() {
 
       {/* Manufacturing props */}
       <section className="mx-auto max-w-[1440px] px-4 py-16 md:px-8">
-        <p className="type-spec mb-8 text-khaki">The standard</p>
+        <p className="type-spec mb-8 text-umber">The standard</p>
         <div className="grid gap-px overflow-hidden border border-border-spec bg-border-spec sm:grid-cols-2 lg:grid-cols-5">
           {qualityProps.map((prop) => (
             <div key={prop.code} className="bg-bone p-5">
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-khaki">
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-umber">
                 / {prop.code}
               </p>
               <p className="mt-3 text-sm font-medium">{prop.title}</p>

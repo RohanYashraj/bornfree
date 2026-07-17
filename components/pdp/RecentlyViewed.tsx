@@ -16,19 +16,22 @@ export default function RecentlyViewed({ exclude }: { exclude?: string }) {
   const [entries, setEntries] = useState<Entry[]>([]);
 
   useEffect(() => {
-    try {
-      const all = JSON.parse(
-        localStorage.getItem("bf-recently-viewed") ?? "[]"
-      ) as Entry[];
-      setEntries(all.filter((e) => e.handle !== exclude).slice(0, 6));
-    } catch {}
+    const id = requestAnimationFrame(() => {
+      try {
+        const all = JSON.parse(
+          localStorage.getItem("bf-recently-viewed") ?? "[]"
+        ) as Entry[];
+        setEntries(all.filter((e) => e.handle !== exclude).slice(0, 6));
+      } catch {}
+    });
+    return () => cancelAnimationFrame(id);
   }, [exclude]);
 
   if (entries.length === 0) return null;
 
   return (
     <section className="mx-auto max-w-[1440px] px-4 py-14 md:px-8">
-      <p className="type-spec mb-6 text-khaki">Recently viewed</p>
+      <p className="type-spec mb-6 text-umber">Recently viewed</p>
       <div className="no-scrollbar flex snap-x gap-4 overflow-x-auto">
         {entries.map((e) => (
           <Link

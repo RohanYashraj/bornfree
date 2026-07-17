@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { megaMenu, siteConfig } from "@/content/site";
 import { useCart, cartCount } from "@/lib/cart-store";
@@ -17,35 +17,44 @@ export type MenuImageTile = {
   label: string;
 };
 
+const emptySubscribe = () => () => {};
 function useMounted() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  return mounted;
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+}
+
+function subscribeScroll(cb: () => void) {
+  window.addEventListener("scroll", cb, { passive: true });
+  return () => window.removeEventListener("scroll", cb);
 }
 
 export default function Header({ menuImage }: { menuImage: MenuImageTile | null }) {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [prevPath, setPrevPath] = useState(pathname);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const mounted = useMounted();
   const lines = useCart((s) => s.lines);
   const openCart = useCart((s) => s.openCart);
   const count = mounted ? cartCount(lines) : 0;
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const scrolled = useSyncExternalStore(
+    subscribeScroll,
+    () => window.scrollY > 24,
+    () => false
+  );
 
-  useEffect(() => {
+  // Close menus on navigation (setState-during-render pattern).
+  if (prevPath !== pathname) {
+    setPrevPath(pathname);
     setMegaOpen(false);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   const overHero = pathname === "/" && !scrolled && !megaOpen;
   const solid = !overHero;
@@ -188,7 +197,7 @@ export default function Header({ menuImage }: { menuImage: MenuImageTile | null 
             >
               <div className="mx-auto grid max-w-[1440px] grid-cols-4 gap-10 px-8 py-10">
                 <div>
-                  <p className="type-spec mb-4 text-khaki">Featured</p>
+                  <p className="type-spec mb-4 text-umber">Featured</p>
                   <ul className="space-y-3">
                     {megaMenu.featured.map((item) => (
                       <li key={item.href}>
@@ -200,7 +209,7 @@ export default function Header({ menuImage }: { menuImage: MenuImageTile | null 
                   </ul>
                 </div>
                 <div>
-                  <p className="type-spec mb-4 text-khaki">Categories</p>
+                  <p className="type-spec mb-4 text-umber">Categories</p>
                   <ul className="space-y-3">
                     {megaMenu.categories.map((item) => (
                       <li key={item.href}>
@@ -212,7 +221,7 @@ export default function Header({ menuImage }: { menuImage: MenuImageTile | null 
                   </ul>
                 </div>
                 <div>
-                  <p className="type-spec mb-4 text-khaki">Shop by Occasion</p>
+                  <p className="type-spec mb-4 text-umber">Shop by Occasion</p>
                   <ul className="space-y-3">
                     {megaMenu.occasions.map((item) => (
                       <li key={item.href}>

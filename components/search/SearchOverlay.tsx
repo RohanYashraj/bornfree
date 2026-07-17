@@ -45,12 +45,13 @@ export default function SearchOverlay({
   useEffect(() => {
     if (!open) return;
     const q = query.trim();
-    if (q.length < 2) {
-      setHits([]);
-      return;
-    }
-    setLoading(true);
     const t = setTimeout(async () => {
+      if (q.length < 2) {
+        setHits([]);
+        setLoading(false);
+        return;
+      }
+      setLoading(true);
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
         const data = await res.json();
@@ -104,13 +105,13 @@ export default function SearchOverlay({
                   onKeyDown={(e) => e.key === "Enter" && submit()}
                   placeholder="Search cargos, shorts, joggers…"
                   aria-label="Search products"
-                  className="w-full bg-transparent text-lg outline-none placeholder:text-khaki"
+                  className="w-full bg-transparent text-lg outline-none placeholder:text-umber"
                 />
                 <button
                   type="button"
                   onClick={onClose}
                   aria-label="Close search"
-                  className="type-spec shrink-0 text-khaki hover:text-carbon"
+                  className="type-spec shrink-0 text-umber hover:text-carbon"
                 >
                   Esc
                 </button>
@@ -118,7 +119,7 @@ export default function SearchOverlay({
 
               {query.trim().length < 2 ? (
                 <div className="py-8">
-                  <p className="type-spec mb-4 text-khaki">Popular searches</p>
+                  <p className="type-spec mb-4 text-umber">Popular searches</p>
                   <div className="flex flex-wrap gap-2">
                     {popularSearches.map((s) => (
                       <button
@@ -135,10 +136,10 @@ export default function SearchOverlay({
               ) : (
                 <div className="py-6">
                   {loading && hits.length === 0 && (
-                    <p className="type-spec py-4 text-khaki">Searching…</p>
+                    <p className="type-spec py-4 text-umber">Searching…</p>
                   )}
                   {!loading && hits.length === 0 && (
-                    <p className="py-4 text-sm text-khaki">
+                    <p className="py-4 text-sm text-umber">
                       Nothing found for “{query}”. Try “cargo” or “shorts”.
                     </p>
                   )}

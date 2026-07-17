@@ -77,7 +77,7 @@ export default function Home() {
         <div className="no-scrollbar mx-auto flex max-w-[1440px] items-center gap-6 overflow-x-auto px-4 py-5 md:justify-center md:px-8">
           {trustProps.map((prop, i) => (
             <span key={prop} className="type-spec flex shrink-0 items-center gap-6 text-carbon/70">
-              {i > 0 && <span aria-hidden className="text-khaki">·</span>}
+              {i > 0 && <span aria-hidden className="text-umber">·</span>}
               {prop}
             </span>
           ))}

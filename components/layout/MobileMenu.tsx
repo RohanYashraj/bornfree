@@ -126,7 +126,7 @@ export default function MobileMenu({
               </a>
             </nav>
 
-            <p className="type-spec mt-auto pt-10 text-khaki">
+            <p className="type-spec mt-auto pt-10 text-umber">
               {siteConfig.contact.phone} · {siteConfig.contact.hours}
             </p>
           </motion.div>

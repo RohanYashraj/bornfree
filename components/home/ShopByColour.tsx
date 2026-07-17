@@ -35,7 +35,7 @@ export default async function ShopByColour() {
   return (
     <section className="py-14">
       <Reveal className="mx-auto max-w-[1440px] px-4 md:px-8">
-        <p className="type-spec mb-2 text-khaki">The palette</p>
+        <p className="type-spec mb-2 text-umber">The palette</p>
         <h2 className="type-display mb-6 text-2xl md:text-4xl">
           Shop by colour
         </h2>
@@ -52,7 +52,7 @@ export default async function ShopByColour() {
                 style={{ backgroundColor: family.swatch }}
               />
               <p className="type-spec mt-3">{family.name}</p>
-              <p className="font-mono text-[10px] text-khaki">
+              <p className="font-mono text-[10px] text-umber">
                 {family.count} styles
               </p>
             </Link>

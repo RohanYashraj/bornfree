@@ -22,7 +22,7 @@ export default async function CategoryRail() {
   return (
     <section className="py-14">
       <Reveal className="mx-auto max-w-[1440px] px-4 md:px-8">
-        <p className="type-spec mb-2 text-khaki">The line</p>
+        <p className="type-spec mb-2 text-umber">The line</p>
         <h2 className="type-display mb-6 text-2xl md:text-4xl">
           Shop by category
         </h2>

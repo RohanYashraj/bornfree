@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function WishlistPage() {
   return (
     <div className="mx-auto max-w-[1440px] px-4 py-12 md:px-8">
-      <p className="type-spec mb-3 text-khaki">Saved for later</p>
+      <p className="type-spec mb-3 text-umber">Saved for later</p>
       <h1 className="type-display mb-10 text-3xl md:text-5xl">Wishlist</h1>
       <WishlistView />
     </div>

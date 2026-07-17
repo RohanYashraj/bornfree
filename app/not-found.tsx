@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="mx-auto flex min-h-[60vh] max-w-[1440px] flex-col items-start justify-center px-4 py-16 md:px-8">
-      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-khaki">
+      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-umber">
         Error 404 · Batch not found
       </p>
       <h1 className="type-display mt-4 text-4xl md:text-6xl">

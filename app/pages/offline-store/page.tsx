@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function OfflineStorePage() {
   return (
     <div className="mx-auto max-w-[1440px] px-4 py-12 md:px-8">
-      <p className="type-spec mb-3 text-khaki">Visit us</p>
+      <p className="type-spec mb-3 text-umber">Visit us</p>
       <h1 className="type-display mb-4 text-3xl md:text-5xl">Offline stores</h1>
       <p className="mb-10 max-w-md text-sm text-carbon/80">
         Five stores across West Bengal, open for shopping and exchanges.{" "}
@@ -21,7 +21,7 @@ export default function OfflineStorePage() {
       <div className="grid gap-px overflow-hidden border border-border-spec bg-border-spec md:grid-cols-2 lg:grid-cols-3">
         {offlineStores.map((store, i) => (
           <div key={store.name} className="flex flex-col bg-paper p-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-khaki">
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-umber">
               / {String(i + 1).padStart(2, "0")}
             </p>
             <h2 className="type-spec mt-3 text-sm">{store.name}</h2>
@@ -48,7 +48,7 @@ export default function OfflineStorePage() {
         ))}
       </div>
 
-      <p className="type-spec mt-8 text-khaki">
+      <p className="type-spec mt-8 text-umber">
         Open {storeHours.toLowerCase()} · Text an ambassador at {storePhone}
       </p>
     </div>

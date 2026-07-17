@@ -121,16 +121,21 @@ function mapProduct(p: any): Product {
 }
 
 async function fetchJson(path: string, tags: string[]): Promise<any | null> {
-  try {
-    const res = await fetch(`${BASE}${path}`, {
-      next: { revalidate: REVALIDATE, tags },
-      headers: { accept: "application/json" },
-    });
-    if (!res.ok) return null;
-    return await res.json();
-  } catch {
-    return null;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(`${BASE}${path}`, {
+        next: { revalidate: REVALIDATE, tags },
+        headers: { accept: "application/json" },
+      });
+      if (res.ok) return await res.json();
+      // Transient throttling (429/503): brief backoff, retry once.
+      if (res.status !== 429 && res.status !== 503) return null;
+    } catch {
+      // network error — retry once
+    }
+    await new Promise((r) => setTimeout(r, 400));
   }
+  return null;
 }
 
 export const publicProvider: CommerceProvider = {

@@ -84,7 +84,7 @@ export default function SizeGuideModal({
                 ))}
               </tbody>
             </table>
-            <p className="mt-3 text-xs text-khaki">
+            <p className="mt-3 text-xs text-umber">
               Elasticated waistbands flex about an inch either way. Between sizes?
               Take the smaller one.
             </p>

@@ -22,7 +22,7 @@ export default function Testimonials() {
   return (
     <section className="border-y border-border-spec bg-paper py-16" aria-label="Customer reviews">
       <div className="mx-auto flex min-h-40 max-w-3xl flex-col items-center justify-center px-4 text-center md:px-8">
-        <p className="type-spec mb-6 text-khaki">What they say</p>
+        <p className="type-spec mb-6 text-umber">What they say</p>
         <AnimatePresence mode="wait">
           <motion.blockquote
             key={index}
@@ -32,7 +32,7 @@ export default function Testimonials() {
             transition={{ duration: 0.4 }}
           >
             <p className="text-lg leading-relaxed md:text-xl">“{t.quote}”</p>
-            <footer className="type-spec mt-5 text-khaki">— {t.name}</footer>
+            <footer className="type-spec mt-5 text-umber">— {t.name}</footer>
           </motion.blockquote>
         </AnimatePresence>
         <div className="mt-8 flex gap-2" role="tablist" aria-label="Reviews">

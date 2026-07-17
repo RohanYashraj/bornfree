@@ -36,7 +36,7 @@ export default function CollectionView({
 
       {totalCount === 0 ? (
         <div className="flex flex-col items-center gap-6 py-24 text-center">
-          <p className="type-spec text-khaki">
+          <p className="type-spec text-umber">
             Nothing matches these filters
           </p>
           <p className="max-w-sm text-sm text-carbon/70">
@@ -73,7 +73,7 @@ export default function CollectionView({
 
           {products.length < totalCount && (
             <div className="flex flex-col items-center gap-3 pb-16">
-              <p className="type-spec text-khaki">
+              <p className="type-spec text-umber">
                 Showing {products.length} of {totalCount}
               </p>
               <Link

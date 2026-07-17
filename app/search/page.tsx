@@ -28,7 +28,7 @@ export default async function SearchPage({ searchParams }: Props) {
           {q ? `Results for “${q}”` : "Search"}
         </h1>
         {q && (
-          <p className="type-spec text-khaki">
+          <p className="type-spec text-umber">
             {filtered.length} {filtered.length === 1 ? "item" : "items"}
           </p>
         )}
@@ -41,7 +41,7 @@ export default async function SearchPage({ searchParams }: Props) {
           options={deriveOptions(results)}
         />
       ) : (
-        <p className="pb-24 text-sm text-khaki">
+        <p className="pb-24 text-sm text-umber">
           Use the search icon in the header to look for cargos, shorts,
           joggers and more.
         </p>

@@ -133,7 +133,7 @@ export default function CartDrawer({
 
             {lines.length === 0 ? (
               <div className="flex flex-1 flex-col items-center justify-center gap-6 px-8 text-center">
-                <p className="type-spec text-khaki">Your cart is empty</p>
+                <p className="type-spec text-umber">Your cart is empty</p>
                 <div className="flex flex-col gap-2">
                   {[
                     { label: "Best Sellers", href: "/collections/best-seller" },
@@ -186,14 +186,14 @@ export default function CartDrawer({
                             type="button"
                             aria-label={`Remove ${line.title}`}
                             onClick={() => removeLine(line.variantId)}
-                            className="shrink-0 p-1 text-khaki hover:text-signal"
+                            className="shrink-0 p-1 text-umber hover:text-signal"
                           >
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
                               <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.2" />
                             </svg>
                           </button>
                         </div>
-                        <p className="mt-0.5 font-mono text-[11px] text-khaki">
+                        <p className="mt-0.5 font-mono text-[11px] text-umber">
                           {line.optionsText}
                         </p>
                         <div className="mt-auto flex items-center justify-between pt-2">
@@ -229,7 +229,7 @@ export default function CartDrawer({
 
                 {suggestions.length > 0 && (
                   <div className="border-t border-border-spec px-5 py-3">
-                    <p className="type-spec mb-2 text-khaki">Complete the fit</p>
+                    <p className="type-spec mb-2 text-umber">Complete the fit</p>
                     <div className="grid grid-cols-2 gap-3">
                       {suggestions.map((s) => (
                         <Link
@@ -260,7 +260,7 @@ export default function CartDrawer({
                     <span className="type-spec">Subtotal</span>
                     <span className="font-mono text-base">{formatRupees(subtotal)}</span>
                   </div>
-                  <p className="mb-4 text-xs text-khaki">
+                  <p className="mb-4 text-xs text-umber">
                     Shipping &amp; discounts calculated at checkout
                   </p>
                   <button

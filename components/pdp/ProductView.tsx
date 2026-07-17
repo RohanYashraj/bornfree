@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { Product } from "@/lib/commerce/types";
 import { htmlToText, productBadge } from "@/lib/commerce/specs";
-import { formatMoney, formatRupees } from "@/lib/money";
+import { formatMoney } from "@/lib/money";
 import { swatchColor } from "@/lib/colors";
 import { useCart, cartPermalink } from "@/lib/cart-store";
 import { useWishlist } from "@/lib/wishlist-store";
@@ -194,7 +194,7 @@ export default function ProductView({ product }: { product: Product }) {
   return (
     <div className="mx-auto max-w-[1440px] px-4 md:px-8">
       <nav aria-label="Breadcrumb" className="py-4">
-        <ol className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-khaki">
+        <ol className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-umber">
           <li>
             <Link href="/" className="hover:text-carbon">Home</Link>
           </li>
@@ -280,7 +280,7 @@ export default function ProductView({ product }: { product: Product }) {
             </div>
 
             <p className="mt-2 flex items-center gap-3 font-mono text-lg">
-              {compareAt && <s className="text-khaki">{formatMoney(compareAt)}</s>}
+              {compareAt && <s className="text-umber">{formatMoney(compareAt)}</s>}
               <span className={compareAt ? "text-signal" : ""}>{formatMoney(price)}</span>
               {badge === "sale" && (
                 <span className="type-spec bg-signal px-2 py-0.5 text-xs text-paper">Sale</span>
@@ -294,7 +294,7 @@ export default function ProductView({ product }: { product: Product }) {
             {colorOption && (
               <fieldset className="mt-6">
                 <legend className="type-spec mb-3">
-                  Colour · <span className="text-khaki">{activeColor}</span>
+                  Colour · <span className="text-umber">{activeColor}</span>
                 </legend>
                 <div className="flex flex-wrap gap-2">
                   {colorOption.values.map((color) => (
@@ -329,7 +329,7 @@ export default function ProductView({ product }: { product: Product }) {
                   <button
                     type="button"
                     onClick={() => setSizeGuideOpen(true)}
-                    className="link-spec -mt-9 font-mono text-[11px] uppercase tracking-[0.08em] text-khaki hover:text-carbon"
+                    className="link-spec -mt-9 font-mono text-[11px] uppercase tracking-[0.08em] text-umber hover:text-carbon"
                   >
                     Size guide
                   </button>
@@ -349,7 +349,7 @@ export default function ProductView({ product }: { product: Product }) {
                             ? "border-carbon bg-carbon text-paper"
                             : available
                               ? "border-border-spec hover:border-carbon"
-                              : "cursor-not-allowed border-border-spec text-khaki line-through"
+                              : "cursor-not-allowed border-border-spec text-umber line-through"
                         }`}
                       >
                         {size}
@@ -412,7 +412,7 @@ export default function ProductView({ product }: { product: Product }) {
               {buyNowLoading ? "Redirecting…" : "Buy now"}
             </button>
 
-            <p className="type-spec mt-4 text-center text-[10px] text-khaki">
+            <p className="type-spec mt-4 text-center text-[10px] text-umber">
               COD available · Free delivery · Easy returns
             </p>
 
@@ -430,7 +430,7 @@ export default function ProductView({ product }: { product: Product }) {
                     .map((line) => line.trim())
                     .filter((line) => line.length > 1)
                     .map((line, i) => (
-                      <li key={i} className={/^(key features|design code)/i.test(line) ? "font-mono text-[11px] uppercase tracking-[0.08em] text-khaki" : ""}>
+                      <li key={i} className={/^(key features|design code)/i.test(line) ? "font-mono text-[11px] uppercase tracking-[0.08em] text-umber" : ""}>
                         {line}
                       </li>
                     ))}
@@ -463,7 +463,7 @@ export default function ProductView({ product }: { product: Product }) {
                 </p>
               </Accordion>
               <Accordion title="Reviews">
-                <p className="text-khaki">
+                <p className="text-umber">
                   Reviews are being migrated from our previous store and will
                   appear here soon.
                 </p>

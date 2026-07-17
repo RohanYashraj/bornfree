@@ -59,11 +59,23 @@ Demo headless storefront for bornfreefashions.com. Next.js 16 (App Router) + Tai
 
 ## Phase status
 
-- [ ] Phase 0 — Scaffold (Next 16, TS strict, Tailwind v4, Motion, tokens, fonts, image config, folders)
-- [ ] Phase 1 — Data layer (types, public+storefront providers, spec parser, availability logic, tests)
-- [ ] Phase 2 — Shell (announcement, header, mega menu, mobile drawer, quick links, footer)
-- [ ] Phase 3 — PLP (card, grid, filters/sort URL state, skeletons, empty states)
-- [ ] Phase 4 — PDP + Cart (gallery, buy panel, Mill Spec, accordions, drawer, checkout handoff)
-- [ ] Phase 5 — Home (all 14 sections)
-- [ ] Phase 6 — Search, Our Story, wishlist, offline-store, contact, 404
-- [ ] Phase 7 — Polish & QA
+- [x] Phase 0 — Scaffold (Next 16, TS strict, Tailwind v4, Motion, tokens, fonts, image config, folders)
+- [x] Phase 1 — Data layer (types, public+storefront providers, spec parser, availability logic, 11 unit tests green)
+- [x] Phase 2 — Shell (announcement, header, mega menu, mobile drawer, quick links, footer, cart drawer, search overlay)
+- [x] Phase 3 — PLP (card, grid, filters/sort URL state, skeletons, empty states)
+- [x] Phase 4 — PDP + Cart (gallery, buy panel, Mill Spec, accordions, drawer, checkout handoff **verified end-to-end**)
+- [x] Phase 5 — Home (all 14 sections)
+- [x] Phase 6 — Search, Our Story, wishlist, offline-store, contact, cart page, 404, sitemap, robots
+- [x] Phase 7 — Polish & QA (contrast fix, mobile pass, E2E checkout, retry-hardened fetches)
+
+## QA log (2026-07-17)
+
+- **E2E checkout verified:** PDP → select size 30-31 → Add to cart → drawer (offer math correct: ₹1,049 cart shows "₹1,451 away from ₹250 off" + buy-2 nudge) → Checkout → lands on real Shopify checkout showing ₹1,049.00. Permalink with a genuinely sold-out variant correctly gets flagged by Shopify — validating §1.4 availability data.
+- **Badges:** best-seller collection: only 2/44 products genuinely sold out (live theme shows nearly all as sold out) — bug fixed.
+- **Contrast fix:** khaki `#A99B7A` fails AA on bone → added `--bf-umber #6E6349` (≥4.5:1 on bone/paper) for muted text on light surfaces; khaki retained on carbon backgrounds, borders, swatches.
+- **Hero art direction:** live banner artwork has baked-in copy → switched to split editorial layout using the store's clean photoshoot frames (caio_jardel series) per §6.1.4's designed-not-stretched rule.
+- **Resilience:** public provider retries once on 429/503 (Shopify throttling observed during testing).
+- **Description overflow:** Shopify `body_html` ships fixed-width (`414pt`) table markup → PDP renders description as cleaned text lines instead of raw HTML.
+- **Note:** the in-app browser pane could not capture screenshots of scrolled viewports (blank captures despite correct DOM/layout metrics — verified via getBoundingClientRect audits). Section layout was verified programmatically; top-of-page captures at 375px and 1265px look correct.
+- Mobile 390px: 2-col PLP grid, sticky ATC bar, snap rails, full-screen menu — all verified.
+- `npm test` 11/11 green · `npm run build` clean (13 routes) · lint clean.

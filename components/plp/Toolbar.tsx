@@ -84,7 +84,7 @@ export default function Toolbar({
           Filter{activeCount > 0 && ` (${activeCount})`}
         </button>
 
-        <p className="type-spec hidden text-khaki sm:block" aria-live="polite">
+        <p className="type-spec hidden text-umber sm:block" aria-live="polite">
           {resultCount} {resultCount === 1 ? "product" : "products"}
         </p>
 
@@ -95,7 +95,7 @@ export default function Toolbar({
               aria-label="2 columns"
               aria-pressed={density === 2}
               onClick={() => onDensity(2)}
-              className={`p-2 font-mono text-xs ${density === 2 ? "text-carbon" : "text-khaki"}`}
+              className={`p-2 font-mono text-xs ${density === 2 ? "text-carbon" : "text-umber"}`}
             >
               ▮▮
             </button>
@@ -104,7 +104,7 @@ export default function Toolbar({
               aria-label="4 columns"
               aria-pressed={density === 4}
               onClick={() => onDensity(4)}
-              className={`p-2 font-mono text-xs ${density === 4 ? "text-carbon" : "text-khaki"}`}
+              className={`p-2 font-mono text-xs ${density === 4 ? "text-carbon" : "text-umber"}`}
             >
               ▮▮▮▮
             </button>
@@ -166,7 +166,7 @@ export default function Toolbar({
               <div className="flex-1 space-y-8 px-5 py-6">
                 {options.colors.length > 0 && (
                   <fieldset>
-                    <legend className="type-spec mb-3 text-khaki">Colour</legend>
+                    <legend className="type-spec mb-3 text-umber">Colour</legend>
                     <div className="flex flex-wrap gap-2">
                       {options.colors.map((color) => {
                         const active = activeColors.includes(color);
@@ -195,7 +195,7 @@ export default function Toolbar({
 
                 {options.sizes.length > 0 && (
                   <fieldset>
-                    <legend className="type-spec mb-3 text-khaki">Size</legend>
+                    <legend className="type-spec mb-3 text-umber">Size</legend>
                     <div className="flex flex-wrap gap-2">
                       {options.sizes.map((size) => {
                         const active = activeSizes.includes(size);
@@ -218,7 +218,7 @@ export default function Toolbar({
                 )}
 
                 <fieldset>
-                  <legend className="type-spec mb-3 text-khaki">
+                  <legend className="type-spec mb-3 text-umber">
                     Price ({formatRupees(options.priceMin)}–{formatRupees(options.priceMax)})
                   </legend>
                   <div className="flex items-center gap-3">
@@ -232,7 +232,7 @@ export default function Toolbar({
                         className="w-full border border-border-spec bg-transparent px-3 py-2 font-mono text-sm"
                       />
                     </label>
-                    <span aria-hidden className="text-khaki">—</span>
+                    <span aria-hidden className="text-umber">—</span>
                     <label className="flex-1">
                       <span className="sr-only">Maximum price</span>
                       <input

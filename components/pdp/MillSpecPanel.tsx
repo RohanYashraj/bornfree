@@ -24,7 +24,7 @@ export default function MillSpecPanel({ specs }: { specs: ProductSpecs }) {
         <span className="text-[11px] font-medium uppercase tracking-[0.14em]">
           Mill Spec
         </span>
-        <span className="text-[10px] uppercase tracking-[0.14em] text-khaki">
+        <span className="text-[10px] uppercase tracking-[0.14em] text-umber">
           BF · KOL · EST. 25Y
         </span>
       </header>
@@ -36,13 +36,13 @@ export default function MillSpecPanel({ specs }: { specs: ProductSpecs }) {
               i < rows.length - 1 ? "border-b border-border-spec" : ""
             }`}
           >
-            <dt className="uppercase tracking-[0.1em] text-khaki">{label}</dt>
+            <dt className="uppercase tracking-[0.1em] text-umber">{label}</dt>
             <dd className="uppercase tracking-[0.03em]">{value}</dd>
           </div>
         ))}
       </dl>
       {specs.designCode && (
-        <footer className="border-t border-carbon/60 px-4 py-2 text-[10px] uppercase tracking-[0.14em] text-khaki">
+        <footer className="border-t border-carbon/60 px-4 py-2 text-[10px] uppercase tracking-[0.14em] text-umber">
           Batch № {specs.designCode} · 25-step QA passed
         </footer>
       )}

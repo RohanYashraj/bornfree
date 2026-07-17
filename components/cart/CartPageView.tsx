@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useCart, cartSubtotal, cartPermalink } from "@/lib/cart-store";
 import { formatRupees } from "@/lib/money";
 import { createCheckout } from "@/app/actions/cart";
@@ -10,16 +10,19 @@ import BfImage from "@/components/ui/BfImage";
 /** Full-page cart fallback — the drawer is the primary surface. */
 export default function CartPageView() {
   const { lines, updateQuantity, removeLine } = useCart();
-  const [mounted, setMounted] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   if (!mounted) return null;
 
   if (lines.length === 0) {
     return (
       <div className="flex flex-col items-start gap-6 pb-24">
-        <p className="type-spec text-khaki">Your cart is empty.</p>
+        <p className="type-spec text-umber">Your cart is empty.</p>
         <Link
           href="/collections/best-seller"
           className="type-spec border border-carbon px-8 py-3 transition-colors hover:bg-carbon hover:text-paper"
@@ -60,7 +63,7 @@ export default function CartPageView() {
               <Link href={`/products/${line.handle}`} className="text-sm font-medium">
                 {line.title}
               </Link>
-              <p className="mt-0.5 font-mono text-[11px] text-khaki">{line.optionsText}</p>
+              <p className="mt-0.5 font-mono text-[11px] text-umber">{line.optionsText}</p>
               <div className="mt-auto flex items-center justify-between pt-3">
                 <div className="flex items-center border border-border-spec">
                   <button
@@ -89,7 +92,7 @@ export default function CartPageView() {
                     type="button"
                     aria-label={`Remove ${line.title}`}
                     onClick={() => removeLine(line.variantId)}
-                    className="type-spec text-khaki hover:text-signal"
+                    className="type-spec text-umber hover:text-signal"
                   >
                     Remove
                   </button>
@@ -104,7 +107,7 @@ export default function CartPageView() {
         <span className="type-spec">Subtotal</span>
         <span className="font-mono text-lg">{formatRupees(cartSubtotal(lines))}</span>
       </div>
-      <p className="mt-1 text-xs text-khaki">
+      <p className="mt-1 text-xs text-umber">
         Shipping &amp; discounts calculated at checkout
       </p>
       <button

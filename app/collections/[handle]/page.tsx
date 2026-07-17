@@ -60,7 +60,7 @@ export default async function CollectionPage({ params, searchParams }: Props) {
   return (
     <div className="mx-auto max-w-[1440px] px-4 md:px-8">
       <nav aria-label="Breadcrumb" className="pt-6">
-        <ol className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-khaki">
+        <ol className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-umber">
           <li>
             <Link href="/" className="hover:text-carbon">
               Home
@@ -75,7 +75,7 @@ export default async function CollectionPage({ params, searchParams }: Props) {
 
       <div className="flex items-baseline gap-4 py-6">
         <h1 className="type-display text-3xl md:text-5xl">{title}</h1>
-        <p className="type-spec text-khaki">
+        <p className="type-spec text-umber">
           {filtered.length} {filtered.length === 1 ? "item" : "items"}
         </p>
       </div>

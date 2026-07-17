@@ -32,7 +32,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={submit} noValidate className="max-w-md space-y-4">
       <label className="block">
-        <span className="type-spec mb-1.5 block text-khaki">Name</span>
+        <span className="type-spec mb-1.5 block text-umber">Name</span>
         <input
           type="text"
           value={name}
@@ -42,7 +42,7 @@ export default function ContactForm() {
         />
       </label>
       <label className="block">
-        <span className="type-spec mb-1.5 block text-khaki">Email</span>
+        <span className="type-spec mb-1.5 block text-umber">Email</span>
         <input
           type="email"
           value={email}
@@ -51,7 +51,7 @@ export default function ContactForm() {
         />
       </label>
       <label className="block">
-        <span className="type-spec mb-1.5 block text-khaki">Message</span>
+        <span className="type-spec mb-1.5 block text-umber">Message</span>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}

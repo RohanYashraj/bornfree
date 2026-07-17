@@ -8,6 +8,7 @@
   --bf-olive: #4e5238;
   --bf-olive-deep: #3e4230;
   --bf-khaki: #a99b7a;
+  --bf-umber: #6e6349; /* muted text on light surfaces — AA against bone/paper */
   --bf-signal: #c2451e;
 
   --bf-border: color-mix(in srgb, var(--bf-khaki) 40%, transparent);
@@ -22,6 +23,7 @@
   --color-olive: var(--bf-olive);
   --color-olive-deep: var(--bf-olive-deep);
   --color-khaki: var(--bf-khaki);
+  --color-umber: var(--bf-umber);
   --color-signal: var(--bf-signal);
   --color-border-spec: var(--bf-border);
 

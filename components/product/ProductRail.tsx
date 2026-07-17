@@ -20,7 +20,7 @@ export default function ProductRail({
       <div className="mx-auto max-w-[1440px] px-4 md:px-8">
         <div className="mb-6 flex items-end justify-between">
           <div>
-            {eyebrow && <p className="type-spec mb-2 text-khaki">{eyebrow}</p>}
+            {eyebrow && <p className="type-spec mb-2 text-umber">{eyebrow}</p>}
             <h2 className="type-display text-2xl md:text-4xl">{title}</h2>
           </div>
           {viewAllHref && (

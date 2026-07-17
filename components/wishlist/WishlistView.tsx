@@ -8,21 +8,19 @@ import ProductCard from "@/components/product/ProductCard";
 
 export default function WishlistView() {
   const handles = useWishlist((s) => s.handles);
-  const [products, setProducts] = useState<Product[] | null>(null);
+  const [fetched, setFetched] = useState<Product[] | null>(null);
+  const products = handles.length === 0 ? [] : fetched;
 
   useEffect(() => {
-    if (handles.length === 0) {
-      setProducts([]);
-      return;
-    }
+    if (handles.length === 0) return;
     let cancelled = false;
     fetch(`/api/products?handles=${handles.join(",")}`)
       .then((r) => r.json())
       .then((data) => {
-        if (!cancelled) setProducts(data.products ?? []);
+        if (!cancelled) setFetched(data.products ?? []);
       })
       .catch(() => {
-        if (!cancelled) setProducts([]);
+        if (!cancelled) setFetched([]);
       });
     return () => {
       cancelled = true;
@@ -45,7 +43,7 @@ export default function WishlistView() {
   if (products.length === 0) {
     return (
       <div className="flex flex-col items-start gap-6 pb-24">
-        <p className="type-spec text-khaki">
+        <p className="type-spec text-umber">
           Nothing saved yet — tap the heart on any product.
         </p>
         <Link

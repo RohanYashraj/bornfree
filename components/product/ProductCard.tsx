@@ -23,15 +23,14 @@ export default function ProductCard({
   const sizeOption = product.options.find((o) => o.name.toLowerCase() === "size");
   const colorKey = colorOption?.name.toLowerCase() ?? "color";
 
-  const defaultColor = useMemo(() => {
+  // Lazy initializer: default to the first colour with a purchasable variant.
+  const [activeColor, setActiveColor] = useState<string | null>(() => {
     if (!colorOption) return null;
     const availableColor = colorOption.values.find((c) =>
       product.variants.some((v) => v.options[colorKey] === c && v.availableForSale)
     );
     return availableColor ?? colorOption.values[0] ?? null;
-  }, [colorOption, colorKey, product.variants]);
-
-  const [activeColor, setActiveColor] = useState<string | null>(defaultColor);
+  });
   const [quickAdd, setQuickAdd] = useState(false);
   const [added, setAdded] = useState<string | null>(null);
   const addLine = useCart((s) => s.addLine);
@@ -165,7 +164,7 @@ export default function ProductCard({
           ) : (
             <div className="pointer-events-auto bg-paper/95 p-2">
               <div className="mb-1 flex items-center justify-between px-1">
-                <span className="type-spec text-[10px] text-khaki">Select size</span>
+                <span className="type-spec text-[10px] text-umber">Select size</span>
                 <button
                   type="button"
                   aria-label="Close size selector"
@@ -187,7 +186,7 @@ export default function ProductCard({
                         ? "border-olive bg-olive text-paper"
                         : available
                           ? "border-border-spec hover:border-carbon"
-                          : "cursor-not-allowed border-border-spec text-khaki line-through"
+                          : "cursor-not-allowed border-border-spec text-umber line-through"
                     }`}
                   >
                     {added === size ? "✓" : size}
@@ -208,7 +207,7 @@ export default function ProductCard({
         </Link>
         <p className="font-mono text-sm">
           {compareAt && (
-            <s className="mr-2 text-khaki">{formatMoney(compareAt)}</s>
+            <s className="mr-2 text-umber">{formatMoney(compareAt)}</s>
           )}
           <span className={compareAt ? "text-signal" : ""}>{formatMoney(price)}</span>
         </p>
@@ -230,7 +229,7 @@ export default function ProductCard({
               />
             ))}
             {colorOption.values.length > 5 && (
-              <span className="font-mono text-[10px] text-khaki">
+              <span className="font-mono text-[10px] text-umber">
                 +{colorOption.values.length - 5}
               </span>
             )}
