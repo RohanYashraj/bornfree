@@ -174,27 +174,31 @@ export const siteConfig = {
     "https://bornfreefashions.com/cdn/shop/files/Bornfree_logo_png_e51f4ef3-9a62-4855-b40e-af936e77f883.png?v=1730459855",
 } as const;
 
-/** Hero slides — imagery from the live homepage slideshow. */
+/**
+ * Hero slides — clean editorial photography from the store's CDN, set in a
+ * split art-direction layout (the banner artwork carries baked-in copy, so
+ * we use the untreated photoshoot frames instead).
+ */
 export const heroSlides = [
   {
-    eyebrow: "CARGO PANTS · 100% COTTON",
+    eyebrow: "JOGGERS · 100% COTTON",
     headline: ["Built for the", "long day"],
-    cta: { label: "Shop cargo pants", href: "/collections/cargo-pants" },
+    cta: { label: "Shop joggers", href: "/collections/cargo-joggers-1" },
     ghost: { label: "New launch", href: "/collections/new-launch" },
-    imageDesktop: "https://bornfreefashions.com/cdn/shop/files/3_1.jpg",
-    imageMobile:
-      "https://bornfreefashions.com/cdn/shop/files/1_f46ae04f-371e-4bce-b0b0-23ca2f2c8d7e.jpg",
-    alt: "Bornfree cargo pants worn outdoors",
+    image:
+      "https://bornfreefashions.com/cdn/shop/files/13-06-2026--caio_jardel03670.jpg",
+    imageAlt: "Bornfree khaki cargo joggers, side profile",
+    code: "01 / KHAKI",
   },
   {
-    eyebrow: "SHORTS · CUT IN KOLKATA",
-    headline: ["Summer,", "sorted"],
-    cta: { label: "Shop shorts", href: "/collections/cargo-shorts" },
+    eyebrow: "DENIM CARGOS · CUT IN KOLKATA",
+    headline: ["Workwear,", "off duty"],
+    cta: { label: "Shop cargo pants", href: "/collections/cargo-pants" },
     ghost: { label: "Best sellers", href: "/collections/best-seller" },
-    imageDesktop: "https://bornfreefashions.com/cdn/shop/files/4_2.jpg",
-    imageMobile:
-      "https://bornfreefashions.com/cdn/shop/files/2_58212a84-9d47-4ce4-a0c5-dc2b25311cf0.jpg",
-    alt: "Bornfree cargo shorts on location",
+    image:
+      "https://bornfreefashions.com/cdn/shop/files/13-06-2026--caio_jardel02430.jpg",
+    imageAlt: "Bornfree indigo denim pants, side profile",
+    code: "02 / INDIGO",
   },
 ];
 
