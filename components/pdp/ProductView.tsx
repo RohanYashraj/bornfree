@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { Product } from "@/lib/commerce/types";
-import { productBadge } from "@/lib/commerce/specs";
+import { htmlToText, productBadge } from "@/lib/commerce/specs";
 import { formatMoney, formatRupees } from "@/lib/money";
 import { swatchColor } from "@/lib/colors";
 import { useCart, cartPermalink } from "@/lib/cart-store";
@@ -423,10 +423,18 @@ export default function ProductView({ product }: { product: Product }) {
             {/* Accordions */}
             <div className="mt-8">
               <Accordion title="Description" defaultOpen>
-                <div
-                  className="[&_table]:w-full [&_td]:align-top"
-                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-                />
+                {/* Shopify body_html carries fixed-width table markup — render as clean text lines. */}
+                <ul className="space-y-1.5">
+                  {htmlToText(product.descriptionHtml)
+                    .split("\n")
+                    .map((line) => line.trim())
+                    .filter((line) => line.length > 1)
+                    .map((line, i) => (
+                      <li key={i} className={/^(key features|design code)/i.test(line) ? "font-mono text-[11px] uppercase tracking-[0.08em] text-khaki" : ""}>
+                        {line}
+                      </li>
+                    ))}
+                </ul>
               </Accordion>
               <Accordion title="Fabric & care">
                 <p>
