@@ -7,6 +7,7 @@ import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header, { type MenuImageTile } from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer, { type CrossSellItem } from "@/components/cart/CartDrawer";
+import { Analytics } from "@vercel/analytics/next"
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -103,6 +104,7 @@ export default async function RootLayout({
         <main id="main">{children}</main>
         <Footer />
         <CartDrawer crossSell={crossSell} />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
