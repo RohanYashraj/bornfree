@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Bornfree "Mill Spec" mark: slab B on carbon, signal batch stamp -->
+  <rect width="64" height="64" rx="4" fill="#1A1A16"/>
+  <path fill="#ECE8DF" fill-rule="evenodd" d="
+    M18 12
+    H37
+    C44.5 12 49 15.8 49 22
+    C49 26.4 46.7 29.5 42.8 30.9
+    C47.8 32.2 51 35.8 51 41
+    C51 47.8 46 52 38 52
+    H18
+    Z
+    M26 19
+    V27
+    H36
+    C39.5 27 41.2 25.6 41.2 23
+    C41.2 20.4 39.5 19 36 19
+    Z
+    M26 34
+    V45
+    H37
+    C40.8 45 42.8 43 42.8 39.5
+    C42.8 36 40.8 34 37 34
+    Z"/>
+  <rect x="50" y="54" width="6" height="6" fill="#C2451E"/>
+</svg>
