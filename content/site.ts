@@ -200,6 +200,48 @@ export const heroSlides = [
   },
 ];
 
+/**
+ * Segment posters — pre-composed campaign cards (local, in /public/segments),
+ * each pairing a wearing occasion with the collection built for it.
+ */
+export const segmentTiles = [
+  {
+    label: "Cargo pants",
+    code: "01 / TRANSIT",
+    href: "/collections/cargo-pants",
+    image: "/segments/all-season-cargos.png",
+    alt: "All-season lightweight cargos — man in khaki cargos standing in a metro carriage",
+  },
+  {
+    label: "Outdoor",
+    code: "02 / TRAIL",
+    href: "/collections/outdoor",
+    image: "/segments/outdoor-cargos.png",
+    alt: "Built for every move — man hiking a rocky mountain trail in stone cargo pants",
+  },
+  {
+    label: "Cargo shorts",
+    code: "03 / OPEN ROAD",
+    href: "/collections/cargo-shorts",
+    image: "/segments/comfort-shorts.png",
+    alt: "All-day comfort shorts — man in navy cargo shorts on a sunlit country road",
+  },
+  {
+    label: "Vacation",
+    code: "04 / DEPARTURES",
+    href: "/collections/vacation",
+    image: "/segments/travel-pants.png",
+    alt: "All-day travel pants — man with a suitcase in an airport terminal",
+  },
+  {
+    label: "Pyjamas",
+    code: "05 / LIGHTS OUT",
+    href: "/collections/pyjamas",
+    image: "/segments/sleep-shorts.png",
+    alt: "100% cotton sleep shorts — man relaxing on a sofa with a mug",
+  },
+];
+
 /** Offline stores — from /pages/offline-store. */
 export const offlineStores = [
   {

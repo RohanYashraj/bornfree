@@ -3,6 +3,7 @@ import { commerce } from "@/lib/commerce";
 import { trustProps } from "@/content/site";
 import Hero from "@/components/home/Hero";
 import QuickLinks from "@/components/layout/QuickLinks";
+import SegmentRail from "@/components/home/SegmentRail";
 import CategoryRail from "@/components/home/CategoryRail";
 import Standard from "@/components/home/Standard";
 import ShopByColour from "@/components/home/ShopByColour";
@@ -46,6 +47,8 @@ export default function Home() {
     <>
       <Hero />
       <QuickLinks />
+
+      <SegmentRail />
 
       <Suspense>
         <CategoryRail />
