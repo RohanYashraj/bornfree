@@ -4,9 +4,12 @@ import { segmentTiles } from "@/content/site";
 import Reveal from "@/components/ui/Reveal";
 
 /**
- * Poster rail — pre-composed campaign cards, one per wearing occasion.
- * The copy is baked into the artwork, so the card stays chrome-free; the
- * mono caption row underneath carries the Mill Spec batch code + link.
+ * Poster marquee — pre-composed campaign cards drifting past like a banner.
+ * The campaign copy is baked into the artwork; the Mill Spec batch code +
+ * collection link sit on a bottom scrim inside each poster. The track holds
+ * two copies of the list so the -50% translate loops seamlessly; it pauses
+ * on hover/focus, and under reduced motion the global override freezes the
+ * animation while the rail falls back to manual swipe.
  */
 export default function SegmentRail() {
   return (
@@ -17,28 +20,49 @@ export default function SegmentRail() {
           Match the mood
         </h2>
       </Reveal>
-      <div className="no-scrollbar mx-auto flex max-w-[1440px] snap-x snap-mandatory gap-4 overflow-x-auto px-4 md:px-8">
-        {segmentTiles.map((tile) => (
-          <Link
-            key={tile.href}
-            href={tile.href}
-            className="group w-[78%] shrink-0 snap-start sm:w-[45%] md:w-[31%] lg:w-[27%]"
-          >
-            <div className="relative aspect-[2/3] overflow-hidden bg-paper">
-              <Image
-                src={tile.image}
-                alt={tile.alt}
-                fill
-                sizes="(max-width: 768px) 78vw, 27vw"
-                className="object-cover transition-transform duration-500 ease-spec group-hover:scale-[1.03]"
-              />
+      <div className="group/rail no-scrollbar overflow-hidden motion-reduce:overflow-x-auto">
+        <div className="flex w-max animate-marquee group-focus-within/rail:[animation-play-state:paused] group-hover/rail:[animation-play-state:paused]">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              aria-hidden={copy === 1 || undefined}
+              className={`flex gap-4 pr-4 pl-0 ${copy === 1 ? "motion-reduce:hidden" : ""}`}
+            >
+              {segmentTiles.map((tile) => (
+                <Link
+                  key={tile.href}
+                  href={tile.href}
+                  tabIndex={copy === 1 ? -1 : undefined}
+                  className="group relative block w-[280px] shrink-0 overflow-hidden bg-paper md:w-[340px]"
+                >
+                  <div className="relative aspect-[2/3]">
+                    <Image
+                      src={tile.image}
+                      alt={copy === 0 ? tile.alt : ""}
+                      fill
+                      sizes="340px"
+                      className="object-cover transition-transform duration-500 ease-spec group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-carbon/75 via-carbon/30 to-transparent pt-16">
+                    <div className="flex items-baseline justify-between px-4 pb-3.5">
+                      <span className="type-spec text-bone/70">{tile.code}</span>
+                      <span className="type-spec text-bone">
+                        {tile.label}{" "}
+                        <span
+                          aria-hidden
+                          className="inline-block transition-transform duration-300 ease-spec group-hover:translate-x-1"
+                        >
+                          →
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
-            <div className="mt-3 flex items-baseline justify-between">
-              <span className="type-spec text-umber">{tile.code}</span>
-              <span className="type-spec link-spec">{tile.label}</span>
-            </div>
-          </Link>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
