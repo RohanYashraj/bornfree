@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { megaMenu, siteConfig } from "@/content/site";
@@ -33,9 +33,11 @@ function subscribeScroll(cb: () => void) {
 
 export default function Header({ menuImage }: { menuImage: MenuImageTile | null }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const [prevPath, setPrevPath] = useState(pathname);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const mounted = useMounted();
@@ -66,6 +68,13 @@ export default function Header({ menuImage }: { menuImage: MenuImageTile | null 
   const scheduleCloseMega = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setMegaOpen(false), 150);
+  };
+
+  const submitSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = query.trim();
+    if (!q) return;
+    router.push(`/search?q=${encodeURIComponent(q)}`);
   };
 
   const iconClass =
@@ -131,11 +140,51 @@ export default function Header({ menuImage }: { menuImage: MenuImageTile | null 
             BORNFREE
           </Link>
 
-          {/* Right: icons */}
+          {/* Right: search + icons */}
           <div className="flex flex-1 items-center justify-end gap-1 md:gap-2">
+            {/* Inline search — desktop */}
+            <form
+              onSubmit={submitSearch}
+              role="search"
+              className="hidden md:flex md:w-40 lg:w-56 xl:w-64"
+            >
+              <label htmlFor="header-search" className="sr-only">
+                Search products
+              </label>
+              <div
+                className={`flex w-full items-center gap-2 rounded-spec border px-3 py-2 transition-colors duration-200 ${
+                  solid
+                    ? "border-border-spec bg-bone"
+                    : "border-paper/40 bg-paper/10 backdrop-blur-sm"
+                }`}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  aria-hidden
+                  className="shrink-0 opacity-70"
+                >
+                  <circle cx="8" cy="8" r="6.3" stroke="currentColor" strokeWidth="1.4" />
+                  <path d="M12.7 12.7L17 17" stroke="currentColor" strokeWidth="1.4" />
+                </svg>
+                <input
+                  id="header-search"
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search cargos, shorts…"
+                  className={`w-full bg-transparent font-mono text-[0.6875rem] uppercase tracking-[0.08em] outline-none placeholder:text-current placeholder:opacity-50 ${
+                    solid ? "text-carbon" : "text-paper"
+                  }`}
+                />
+              </div>
+            </form>
+            {/* Search icon — mobile opens overlay */}
             <button
               type="button"
-              className={iconClass}
+              className={`${iconClass} md:hidden`}
               aria-label="Search"
               onClick={() => setSearchOpen(true)}
             >

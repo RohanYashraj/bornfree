@@ -101,6 +101,32 @@ body {
   transform: scaleX(1);
 }
 
+/* Merchandising panel — flat garment-tag surface used by Shop-by-Size/Price etc. */
+.panel-spec {
+  background: var(--bf-paper);
+  border: 1px solid var(--bf-border);
+  border-radius: var(--radius-spec);
+}
+
+/* Flat spec pill — square-edged filter/tab chip in the Mill Spec language */
+.pill-spec {
+  border: 1px solid var(--bf-border);
+  border-radius: var(--radius-spec);
+  transition: background-color 200ms var(--ease-spec),
+    color 200ms var(--ease-spec), border-color 200ms var(--ease-spec);
+}
+.pill-spec:hover,
+.pill-spec:focus-visible {
+  border-color: var(--bf-olive);
+  background: var(--bf-olive);
+  color: var(--bf-paper);
+}
+.pill-spec[data-active="true"] {
+  border-color: var(--bf-carbon);
+  background: var(--bf-carbon);
+  color: var(--bf-paper);
+}
+
 /* Hide scrollbar on chip rails while keeping scroll */
 .no-scrollbar {
   scrollbar-width: none;

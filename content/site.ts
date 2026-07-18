@@ -80,6 +80,40 @@ export const megaMenu = {
   })),
 };
 
+/** Shop-by-size pills — deep-link into the all-products PLP with the size filter applied. */
+export const sizeOptions = [
+  { label: "S", href: "/collections/all?size=S" },
+  { label: "M", href: "/collections/all?size=M" },
+  { label: "L", href: "/collections/all?size=L" },
+  { label: "XL", href: "/collections/all?size=XL" },
+  { label: "XXL", href: "/collections/all?size=XXL" },
+  { label: "3XL", href: "/collections/all?size=3XL" },
+];
+
+/** Shop-by-price bands — deep-link into the all-products PLP with a max-price filter. */
+export const priceBands = [
+  { label: "Under ₹999", href: "/collections/all?max=999" },
+  { label: "Under ₹1499", href: "/collections/all?max=1499" },
+  { label: "Under ₹1999", href: "/collections/all?max=1999" },
+];
+
+/** Tabs for the homepage "Shop by" product grid — one collection per tab. */
+export const productTabs = [
+  { label: "New Launch", handle: "new-launch", eyebrow: "Fresh off the line" },
+  { label: "Best Sellers", handle: "best-seller", eyebrow: "Proven in the wash" },
+  { label: "Shop All", handle: "all", eyebrow: "The full line" },
+];
+
+/** Full-bleed editorial promo banner between the home rails. */
+export const promoBanner = {
+  eyebrow: "The comfort standard",
+  headline: ["Cargos that keep up", "with every day"],
+  cta: { label: "Shop cargo pants", href: "/collections/cargo-pants" },
+  image: "/segments/all-season-cargos.png",
+  alt: "Man in Bornfree khaki cargos standing in a metro carriage",
+  code: "06 / EVERYDAY",
+};
+
 export const popularSearches = [
   "cargo pants",
   "cargo shorts",

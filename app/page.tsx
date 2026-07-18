@@ -1,45 +1,31 @@
 import { Suspense } from "react";
 import { commerce } from "@/lib/commerce";
-import { trustProps } from "@/content/site";
+import { trustProps, productTabs } from "@/content/site";
 import Hero from "@/components/home/Hero";
 import QuickLinks from "@/components/layout/QuickLinks";
 import SegmentRail from "@/components/home/SegmentRail";
 import CategoryRail from "@/components/home/CategoryRail";
+import ShopBySizePrice from "@/components/home/ShopBySizePrice";
+import PromoBanner from "@/components/home/PromoBanner";
+import ShopByTabs, { type ProductTab } from "@/components/home/ShopByTabs";
 import Standard from "@/components/home/Standard";
 import ShopByColour from "@/components/home/ShopByColour";
 import Testimonials from "@/components/home/Testimonials";
 import NewsletterForm from "@/components/home/NewsletterForm";
-import ProductRail from "@/components/product/ProductRail";
 import Reveal from "@/components/ui/Reveal";
 
 export const revalidate = 60;
 
-async function BestSellersRail() {
-  const products = (await commerce.getCollectionProducts("best-seller", 20))
-    .filter((p) => p.availableForSale)
-    .slice(0, 10);
-  return (
-    <ProductRail
-      title="Best sellers"
-      eyebrow="Proven in the wash"
-      products={products}
-      viewAllHref="/collections/best-seller"
-    />
+async function ShopByTabsSection() {
+  const tabs: ProductTab[] = await Promise.all(
+    productTabs.map(async (tab) => {
+      const products = (await commerce.getCollectionProducts(tab.handle, 20))
+        .filter((p) => p.availableForSale)
+        .slice(0, 8);
+      return { ...tab, products };
+    })
   );
-}
-
-async function NewLaunchRail() {
-  const products = (await commerce.getCollectionProducts("new-launch", 20))
-    .filter((p) => p.availableForSale)
-    .slice(0, 10);
-  return (
-    <ProductRail
-      title="New launch"
-      eyebrow="Fresh off the line"
-      products={products}
-      viewAllHref="/collections/new-launch"
-    />
-  );
+  return <ShopByTabs tabs={tabs} />;
 }
 
 export default function Home() {
@@ -48,24 +34,24 @@ export default function Home() {
       <Hero />
       <QuickLinks />
 
-      <SegmentRail />
-
       <Suspense>
         <CategoryRail />
       </Suspense>
 
+      <ShopBySizePrice />
+
+      <SegmentRail />
+
+      <PromoBanner />
+
       <Suspense>
-        <BestSellersRail />
+        <ShopByTabsSection />
       </Suspense>
 
       <Standard />
 
       <Suspense>
         <ShopByColour />
-      </Suspense>
-
-      <Suspense>
-        <NewLaunchRail />
       </Suspense>
 
       <Testimonials />
