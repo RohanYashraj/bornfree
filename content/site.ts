@@ -109,7 +109,7 @@ export const promoBanner = {
   eyebrow: "The comfort standard",
   headline: ["Cargos that keep up", "with every day"],
   cta: { label: "Shop cargo pants", href: "/collections/cargo-pants" },
-  image: "/segments/all-season-cargos.png",
+  image: "/segments/cargo shorts 2.png",
   alt: "Man in Bornfree khaki cargos standing in a metro carriage",
   code: "06 / EVERYDAY",
 };
